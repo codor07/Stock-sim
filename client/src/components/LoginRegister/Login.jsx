@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link,useNavigate} from "react-router-dom";
 import axios from 'axios';
 
 import './loginregister.css'
 
 const Login = () => {
+   const navigate=useNavigate();
     const [email, setEmail] = useState("");
     const [pass, setPass] = useState("");
     const [isError, setisError] = useState(false);
@@ -44,12 +45,14 @@ const Login = () => {
             }
             // setloginId({ userId: response.data.userInfo._id, userName: response.data.userInfo.name, userEmail: response.data.userInfo.email, quizIds: response.data.userInfo.attemptedQuizes })
             // console.log('here is data recieved',response)
-
-            // navigate('/user')
-            window.alert("User Login successfully");
+            console.log(response.data.userInfo);
+            navigate('/profile',{state:{val:response.data.userInfo}});
+            // window.alert("User Login successfully");
+            // <Navigate to="/"  />
         } catch (error) {
             setisError(true);
             setError("An error occurred during login");
+            console.log(error);
         }
     }
     return (

@@ -22,7 +22,7 @@ const Header = () => {
            <AppBar position="static">
   <Toolbar>
     <Typography variant="h6" className={classes.title}>
-      Stock Hunter
+      Stock Simulator and Paper Trading
     </Typography>
   </Toolbar>
 </AppBar>

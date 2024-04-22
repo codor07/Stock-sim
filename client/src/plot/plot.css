@@ -1,7 +1,12 @@
+.root{
+    background-color: #b4b0b091;
+  background-size: cover;
+}
 .plot_graph{
     background-color: rgb(226 224 224);
-    /* border: 2px solid red; */
+    /* border: 2px solid blue; */
     display: flex;
+    /* width:70%; */
     align-items: center;
     justify-content: center;
    margin:10px;
@@ -14,8 +19,17 @@
     font-size: 23px;
     
 }
+.graph_buy_sell{
+    display: flex;
+    flex-wrap: nowrap;
+}
 .button_plot{
-    width:100%;
+    flex:70%;
+    /* width:700px; */
     /* height: 500px; */
     /* border: 2px solid red; */
+}
+.Plot_First{
+    /* border:2px solid blue; */
+    flex:30%;
 }

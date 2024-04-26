@@ -1,18 +1,19 @@
-.plot_graph{
-    background-color: rgb(226 224 224);
+ .plot_graph{
+    background-color: rgb(242, 236, 236);
     /* border: 2px solid red; */
     display: flex;
     align-items: center;
     justify-content: center;
-   margin:10px;
+    margin:10px;
 }
 .name_company{
+    color: rgb(74, 87, 83);
+    background-color: rgb(242, 246, 246);
     margin:10px;
     font-family: "Open Sans", verdana, arial, sans-serif;
     line-height: 2rem;
     font-weight: 400;
     font-size: 23px;
-    
 }
 .button_plot{
     width:100%;

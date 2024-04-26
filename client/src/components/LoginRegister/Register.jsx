@@ -95,8 +95,6 @@ const Register = () => {
                                 />
                             </div>
 
-
-
                             <button
                                 style={{ marginTop: "30px" }}
                                 className="button-30"

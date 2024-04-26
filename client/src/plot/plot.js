@@ -7,6 +7,7 @@ import { useState } from 'react';
 import MonthlyPlot from './Monthly_plot';
 import DailyPlot from './Daily_plot';
 import IntradayPlot from './Intraday_plot';
+
 const Plot = () => {
     const [daily,setDaily]=useState("daily");
    
@@ -28,10 +29,10 @@ const Plot = () => {
          <Header></Header>
          <div className='button_plot'>
            
-    <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
-        <Button onClick={()=>{daily_handler("daily")}}>Daily</Button>
-        <Button onClick={()=>{daily_handler("month")}}>Monthly</Button>
-        <Button onClick={()=>{daily_handler("day")}}>IntraDay(5min)</Button>
+    <ButtonGroup style={{marginLeft: '10px'}} variant="contained" color="primary" aria-label="contained primary button group">
+        <Button style={{'margin' : '10px', 'border-radius' : '5px'}} color="secondary" onClick={()=>{daily_handler("daily")}}>Daily</Button>
+        <Button style={{'margin' : '10px', 'border-radius' : '5px'}} color="secondary" onClick={()=>{daily_handler("month")}}>Monthly</Button>
+        <Button style={{'margin' : '10px', 'border-radius' : '5px'}} color="secondary" onClick={()=>{daily_handler("day")}}>IntraDay(5min)</Button>
       </ButtonGroup>
          {
            ( daily==="daily")?<DailyPlot/>:(daily==="month")?<MonthlyPlot/>:<IntradayPlot/>

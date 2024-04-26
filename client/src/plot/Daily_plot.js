@@ -1,6 +1,7 @@
 import React, { useEffect ,useState} from 'react';
 import axios from 'axios';
 import './plot.css'
+import './Daily_plot.css';
 import PlotGraph from 'react-plotly.js';
 // import Header from '../pages/header'
 import { useLocation } from 'react-router-dom';
@@ -77,4 +78,3 @@ function Daily_Plot() {
 }
 
 export default Daily_Plot;
-  

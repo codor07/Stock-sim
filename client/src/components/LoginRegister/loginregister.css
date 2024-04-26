@@ -3,7 +3,9 @@
 
 *{
     margin: 0;
+    margin-top: 3px;
     padding: 0;
+    border-radius: 5px;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
@@ -16,7 +18,7 @@
   }
    
 .body{
-    padding: 50px;
+   padding: 50px;
    margin-left: 37%;
    margin-top: 8%;
 } 

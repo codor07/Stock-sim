@@ -3,7 +3,7 @@ import Login from './components/LoginRegister/Login';
 import Register from './components/LoginRegister/Register';
 import Home from './pages/Home';
 import Detail from './pages/Detail';
-import Plot from './plot/Plot';
+import Plot from './plot/plot';
 import Profile from './Profile/profile'
 function App() {
   return (

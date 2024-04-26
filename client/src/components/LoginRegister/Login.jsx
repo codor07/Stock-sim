@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Link,useNavigate} from "react-router-dom";
 import axios from 'axios';
-
 import './loginregister.css'
 
 const Login = () => {
@@ -58,8 +57,6 @@ const Login = () => {
     return (
         <div>
             <div>
-
-
                 <div className="body">
                     <div className="home-bannerImage-container">
                         {/* <img src={BannerBackground} alt="" /> */}
@@ -94,9 +91,7 @@ const Login = () => {
                                         name="password"
                                     />
                                 </div>
-
-
-
+                                
                                 <button
                                     style={{ marginTop: "30px" }}
                                     className="button-30"

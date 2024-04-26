@@ -1,0 +1,44 @@
+.portfolio-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .portfolio-details {
+    margin-top: 20px;
+  }
+  
+  .portfolio-info p {
+    margin-bottom: 10px;
+  }
+  
+  .portfolio-stocks h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .portfolio-stocks ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .portfolio-stocks ul li {
+    margin-bottom: 10px;
+  }
+  
+  .stock-name {
+    margin-right: 10px;
+    font-weight: bold;
+  }
+  
+  .stock-quantity {
+    margin-right: 10px;
+  }
+  
+  .stock-value {
+    color: #888;
+  }
+  

@@ -1,33 +1,33 @@
-import React, { useEffect ,useState} from 'react'
+import React, { useEffect ,useState} from 'react';
 import axios from 'axios';
 import './plot.css'
 import PlotGraph from 'react-plotly.js';
-// import Header from '../pages/header';
+// import Header from '../pages/header'
 import { useLocation } from 'react-router-dom';
-function Intraday_plot() {
+function IntraDay_Plot(props) {
    const  {state} =useLocation();
     const [Xaxis,setXAxis]=useState([]);
     const [Yaxis,setYAxis]=useState([]);
     const [name,setName]=useState("");
     const [marketVal,setValue]=useState("");
+    const [currentPrice,setCurrentPrice]=useState("");
+    const [country,setCountry]=useState("");
     const options = {
-      method: 'GET',
-      url: 'https://alpha-vantage.p.rapidapi.com/query',
-      params: {
-        interval: '5min',
-        function: 'TIME_SERIES_INTRADAY',
-        symbol: state.symbol,
-        datatype: 'json',
-        output_size: 'compact'
-      },
-      headers: {
-        'X-RapidAPI-Key': 'c31d153c5dmsha381f7a79f346a1p1e1c62jsn1c0711182248',
-        'X-RapidAPI-Host': 'alpha-vantage.p.rapidapi.com'
-      }
-    };
+        method: 'GET',
+        url: 'https://real-time-finance-data.p.rapidapi.com/stock-time-series',
+        params: {
+          symbol:state.symbol==null?"MSFT":state.symbol,
+          period: "5D",
+          language: 'en'
+        },
+        headers: {
+          'X-RapidAPI-Key': 'ee4e2bab1bmshe865451e66a82bcp16bdb1jsn6dc8393b3b27',
+          'X-RapidAPI-Host': 'real-time-finance-data.p.rapidapi.com'
+        }
+      };
       
       useEffect(() => {
-   
+     
         // Call the 'fetchData' function when the component mounts (empty dependency array)
         fetchData();
       }, []);
@@ -35,15 +35,20 @@ function Intraday_plot() {
 
       const fetchData= async()=>{
         try {
+           
             const response = await axios.request(options);
-            console.log(response.data);
+            console.log(response.data.data);
             setName(state.name);
-            setValue(state.marketValue)
+            setValue(state.marketValue===undefined?"NA":state.marketValue)
+            setCountry(state.country===undefined?state.country_code==="IN"?"India":"US":state.country)
             let stockChartXValuesFunction = [];
             let stockChartYValuesFunction = [];
-            for (var key in response.data['Time Series (5min)']) {
+                setCurrentPrice(response.data.data.price);
+
+            for (var key in response.data.data['time_series']) {
+              
                 stockChartXValuesFunction.push(key);
-                stockChartYValuesFunction.push(response.data['Time Series (5min)'][key]['1. open']);
+                stockChartYValuesFunction.push(response.data.data['time_series'][key]['price']);
               }
               setXAxis(stockChartXValuesFunction);
               setYAxis(stockChartYValuesFunction);
@@ -56,10 +61,12 @@ function Intraday_plot() {
       {/* <Header></Header> */}
         <div className='name_company'>
           <div> {name}</div>
-          <div> Market Value-{marketVal} $</div>
+          <div> Market Value-{marketVal} {`${country==="India"?'INR':'$'}`}</div>
+          <div> Country-{country}</div>
+          <div > Current Price:{currentPrice} {`${country==="India"?'INR':'$'}`}</div>
         </div>
         <div className='plot_graph'>
-        <div> Intra Day </div>
+        <div> 5 Day </div>
         <PlotGraph
           data={[
             {
@@ -77,5 +84,5 @@ function Intraday_plot() {
   )
 }
 
-export default Intraday_plot;
+export default IntraDay_Plot;
   

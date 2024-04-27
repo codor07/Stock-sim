@@ -55,4 +55,43 @@
     background-color: #45a049;
   }
   
+  .root{
+    /* background-image: url('./stock.jpg'); */
+    background-color: #b4b0b091;
+    background-size: cover;
+  }
+  .button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  button {
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 0 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .buy-button {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .sell-button {
+    background-color: #f44336;
+    color: white;
+  }
+  
+  .watchlist-button {
+    background-color: #2196F3;
+    color: white;
+  }
+  
+  button i {
+    margin-right: 5px;
+  }
   

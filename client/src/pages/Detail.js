@@ -14,10 +14,20 @@ const Detail = ({details}) => {
       { 
         (!show?<>  <h2>{details.name}</h2>
         <p>Current Price: ${details.currentPrice}</p>
-        <div className="buttons">
-          <button className="buy-button" onClick={handle_buy}>Buy</button>
-          <button className="sell-button" onClick={handle_sell}>Sell</button>
-        </div>
+        <div className="button-container">
+      <button className="buy-button">
+       
+        Buy
+      </button>
+      <button className="sell-button">
+        
+        Sell
+      </button>
+      <button className="watchlist-button">
+        
+        Watchlist
+      </button>
+    </div>
         </>:<>
            <BuyStock  details={{companyName:details.name,currentPrice:details.currentPrice,balance:100000}}></BuyStock>
         </>)

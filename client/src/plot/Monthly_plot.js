@@ -6,7 +6,7 @@ import { useLocation } from 'react-router-dom';
 import Stock from '../pages/Detail'
 function Monthly_plot(props) {
    const  {state} =useLocation();
-   console.log(state);
+   console.log(state.item);
     const [Xaxis,setXAxis]=useState([]);
     const [Yaxis,setYAxis]=useState([]);
     const [f50axis,set50]=useState([]);
@@ -23,7 +23,7 @@ function Monthly_plot(props) {
         method: 'GET',
         url: 'https://real-time-finance-data.p.rapidapi.com/stock-time-series',
         params: {
-          symbol:state.symbol,
+          symbol:state.item.symbol==null?"MSFT":state.item.symbol,
           period: "1M",
           language: 'en'
         },
@@ -73,9 +73,9 @@ function Monthly_plot(props) {
            
             const response = await axios.request(options);
             console.log(response.data.data);
-            setName(state.name);
-            setValue(state.marketValue===undefined?"NA":state.marketValue)
-            setCountry(state.country===undefined?state.country_code==="IN"?"India":"US":state.country)
+            setName(state.item.name);
+            setValue(state.item.marketValue===undefined?"NA":state.item.marketValue)
+            setCountry(state.item.country===undefined?state.item.country_code==="IN"?"India":"US":state.item.country)
             let stockChartXValuesFunction = [];
             let stockChartYValuesFunction = [];
                 setCurrentPrice(response.data.data.price);
@@ -98,9 +98,9 @@ function Monthly_plot(props) {
       {/* <Header></Header> */}
         <div className='name_company'>
           <div> {name}</div>
-          <div> Market Value-{marketVal} {`${country==="India"?'INR':'$'}`}</div>
+          {/* <div> Market Value-{marketVal} {`${country==="India"?'INR':'$'}`}</div> */}
           <div> Country-{country}</div>
-          <div > Current Price:{currentPrice} {`${country==="India"?'INR':'$'}`}</div>
+          <div > Last Traded Value:{currentPrice} {`${country==="India"?'INR':'$'}`}</div>
         </div>
         <div className='plot_graph'>
           <div className='button_plot'>
@@ -130,11 +130,11 @@ function Monthly_plot(props) {
               marker: {color: 'blue'},
             }
           ]}
-          layout={{width: 650, height: 440, title:`Company name: ${name}` }}
+          layout={{width: 850, height: 540, title:`Company name: ${name}` }}
         />
          </div>
          <div className='Plot_First'>
-          <Stock details={{name:name,currentPrice:currentPrice}}></Stock>
+         <Stock details={{name:name,currentPrice:currentPrice,email:state.val.email,country:country}}></Stock>
     </div>
         </div>
         <div>

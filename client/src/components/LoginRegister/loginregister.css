@@ -5,7 +5,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: cursive;
 }
 .home-bannerImage-container {
     position: absolute;
@@ -14,12 +14,6 @@
     z-index: -2;
     max-width: 700px;
   }
-   
-.body{
-    padding: 50px;
-   margin-left: 37%;
-   margin-top: 8%;
-} 
 
 .auth-form-container{
     position: relative;
@@ -37,6 +31,7 @@
     width: 200%;
     height: 500px;
     flex-direction: column;
+    background-color: #cbcbcb;
 }
 
 .register-form{
@@ -52,13 +47,14 @@
 }
 
 input{
-    padding-left: 5px;
-    margin-left: 10px;
+    padding-left: 19px;
+    margin-left: 9px;
     border: none;
     outline: none;
-    font-size: 16px;
+    font-size: 18px;
     border-bottom: 2px solid #ccc;
     border-top: 2px solid transparent;
+    border-radius: 20px;
 }
 
 input:focus{
@@ -114,3 +110,21 @@ select{
     border-bottom: 2px solid #ccc;
     border-top: 2px solid transparent;
 }
+.Stock_main{
+    background-image: url('./fullstock.jpg');
+    background-size: cover;
+    height: 710px;
+    
+ }
+ .Stock_main_register{
+    background-image: url('./stock.jpg');
+    background-size: cover;
+    height: 710px;
+ }
+ .container_login{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    top: 100px;
+ }

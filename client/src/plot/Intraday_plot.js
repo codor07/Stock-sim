@@ -11,7 +11,7 @@ function IntraDay_plot(props) {
     const [Yaxis,setYAxis]=useState([]);
     const [f50axis,set50]=useState([]);
     const [f100axis,set100]=useState([]);
-    // const [f10axis,set10]=useState([]);
+    const [f10axis,set10]=useState([]);
     const [windowSize, setWindowSize] = useState(10);
     const[movingAverage,setMovingAverage]=useState([]);
     const [name,setName]=useState("");
@@ -23,7 +23,7 @@ function IntraDay_plot(props) {
         method: 'GET',
         url: 'https://real-time-finance-data.p.rapidapi.com/stock-time-series',
         params: {
-          symbol:state.symbol,
+          symbol:state.item.symbol==null?"MSFT":state.item.symbol,
           period: "5D",
           language: 'en'
         },
@@ -50,12 +50,12 @@ function IntraDay_plot(props) {
       const val=e.target.value;
       console.log(val)
       setWindowSize(val);
-      // console.log(movingAverage);
       const movingDays=calculateMovingAverage(movingAverage,val);
-      if(val==50){ 
+      console.log(movingDays);
+      if(val==5){ 
         set50(movingDays);
       }
-      else if(val==100){
+      else if(val==10){
         set100(movingDays);
       }
           
@@ -73,9 +73,9 @@ function IntraDay_plot(props) {
            
             const response = await axios.request(options);
             console.log(response.data.data);
-            setName(state.name);
-            setValue(state.marketValue===undefined?"NA":state.marketValue)
-            setCountry(state.country===undefined?state.country_code==="IN"?"India":"US":state.country)
+            setName(state.item.name);
+            setValue(state.item.marketValue===undefined?"NA":state.item.marketValue)
+            setCountry(state.item.country===undefined?state.item.country_code==="IN"?"India":"US":state.item.country)
             let stockChartXValuesFunction = [];
             let stockChartYValuesFunction = [];
                 setCurrentPrice(response.data.data.price);
@@ -98,9 +98,9 @@ function IntraDay_plot(props) {
       {/* <Header></Header> */}
         <div className='name_company'>
           <div> {name}</div>
-          <div> Market Value-{marketVal} {`${country==="India"?'INR':'$'}`}</div>
+          {/* <div> Market Value-{marketVal} {`${country==="India"?'INR':'$'}`}</div> */}
           <div> Country-{country}</div>
-          <div > Current Price:{currentPrice} {`${country==="India"?'INR':'$'}`}</div>
+          <div > Last Traded Value:{currentPrice} {`${country==="India"?'INR':'$'}`}</div>
         </div>
         <div className='plot_graph'>
           <div className='button_plot'>
@@ -130,18 +130,18 @@ function IntraDay_plot(props) {
               marker: {color: 'blue'},
             }
           ]}
-          layout={{width: 650, height: 440, title:`Company name: ${name}` }}
+          layout={{width: 850, height: 540, title:`Company name: ${name}` }}
         />
          </div>
          <div className='Plot_First'>
-          <Stock details={{name:name,currentPrice:currentPrice}}></Stock>
+         <Stock details={{name:name,currentPrice:currentPrice,email:state.val.email,country:country}}></Stock>
     </div>
         </div>
         <div>
       <select value={windowSize} onChange={handleSelectChange}>
+        <option value="5">5 Days</option>
         <option value="10">10 Days</option>
-        <option value="50">50 Days</option>
-        <option value="100">100 Days</option>
+        <option value="20">20 Days</option>
       </select>
       {/* <div>Moving Average for {windowSize} days: {movingAverage.join(', ')}</div> */}
     </div>

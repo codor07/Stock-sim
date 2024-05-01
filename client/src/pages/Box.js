@@ -9,7 +9,8 @@ const Element = ({ name, symbol, marketValue,country }) => (
       {/* <p>country:{country}</p> */}
     </div>
   );
-const Box = () => {
+const Box = (props) => {
+    console.log(props.userInfo.state.val)
     const data = [
         { name: "Microsoft", symbol: "MSFT", marketValue: 3.18666E+12, country: "United States" },
         { name: "Apple", symbol: "AAPL", marketValue: 2.68843E+12, country: "United States" },
@@ -267,7 +268,8 @@ const Box = () => {
   return (
            <div className="container">
     {data.map((item, index) => (
-        <Link to='/plot' state={item} className="BOX" >
+        <Link to='/plot' state={{item:item ,val:props.userInfo.state.val}} className="BOX" >
+        {/* // <Link to={{ pathname: '/plot', state: {item} }} className="BOX"> */}
               <Element key={index} {...item} />
         </Link>
     ))};

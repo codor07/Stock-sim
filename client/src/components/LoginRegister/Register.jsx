@@ -49,7 +49,8 @@ const Register = () => {
         }
     }
     return (
-        <div>
+        <div className='Stock_main_register'>
+        <div className='container_login'>
             <div className="body">
                 <div className="home-bannerImage-container">
                     {/* <img src={BannerBackground} alt="" /> */}
@@ -122,6 +123,7 @@ const Register = () => {
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     )
 }

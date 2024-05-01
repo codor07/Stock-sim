@@ -9,7 +9,12 @@ import MonthlyPlot from './Monthly_plot';
 import DailyPlot from './One_day';
 import IntradayPlot from './Intraday_plot';
 import Year_Plot from './Year_plot';
-const Plot = () => {
+import { useLocation } from 'react-router-dom';
+
+const Plot = (props) => {
+  // const location=useLocation();
+  // const {state}=location;
+  // console.log(state);
     const [daily,setDaily]=useState("daily");
    
     const daily_handler=(stock)=>{
@@ -22,8 +27,8 @@ const Plot = () => {
            
     <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
         <Button onClick={()=>{daily_handler("daily")}}>Daily</Button>
+        <Button onClick={()=>{daily_handler("day")}}>5 Day</Button>
         <Button onClick={()=>{daily_handler("month")}}>Monthly</Button>
-        <Button onClick={()=>{daily_handler("day")}}>IntraDay(5 Day)</Button>
         <Button onClick={()=>{daily_handler("year")}}>Year</Button>
       </ButtonGroup>
       {

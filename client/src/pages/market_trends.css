@@ -1,0 +1,41 @@
+.box2{
+    height: 145px;
+    border-bottom: 1px solid rgb(134, 131, 131);
+    transform:
+    rotate3d(.5,-.866,0,15deg)
+    rotate(1deg);
+  box-shadow:
+    2em 4em 6em -2em rgba(0,0,0,.5),
+    1em 2em 3.5em -2.5em rgba(0,0,0,.5);
+  transition:
+    transform .4s ease,
+    box-shadow .4s ease;
+  border-radius: .5em;
+  background-color: #90CAF9;
+  &:hover {
+    transform:
+      rotate3d(0,0,0,0deg)
+      rotate(0deg);
+  }
+    /* box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset; */
+}
+.market{
+    display: flex;
+    flex-direction: column;
+}
+.box4{
+  border-bottom:1px solid rgb(91, 90, 90);
+   margin:10px;
+  display: flex;
+  flex-direction: row;
+  text-decoration: none;
+}
+.artical_title{
+  font-size: 18px;
+  color:black;
+}
+.title{
+  color: black;
+    font-size: 21px;
+    font-weight: 500;
+}

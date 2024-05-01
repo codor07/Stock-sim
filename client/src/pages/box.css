@@ -51,9 +51,15 @@
     display: flex;
     flex-wrap: wrap;
   }
-  .plot{
-    flex:70%;
+  .market_trends{
+    margin: 5px;
+    width: 70%;
+    height: 683px;
+    overflow: scroll;
   }
+  .market_trends::-webkit-scrollbar {
+    display: none;
+}
   .SearchBar{
-    flex:30%;
+    /* flex:30%; */
   }

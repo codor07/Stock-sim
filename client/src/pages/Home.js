@@ -3,26 +3,32 @@ import React from 'react'
 import Header from './header'
 import Box from './Box';
 import SearchBar from '../plot/Search';
-// import Plot from '../plot/Plot';
+// import Marketrends from './Market_trends';
+import News from './home_news'
 import './box.css'
+import { useLocation } from 'react-router-dom';
 const Home = () => {
-    // const [companyName,setCompanyName]=useState('');
-    // const [companyAbout,setCompanyAbout]=useState('');
-   
+   const location=useLocation();
+   const {state}=location;
+   console.log(state)
   return (
-    
+  <>
+  {state==null?<h2>Login First to watch home page</h2>:
     <div className='root'>
       <Header></Header>
       <div className='home_container'>
-         {/* <div className='plot'>
-             <Plot></Plot>
-         </div> */}
       <div className="SearchBar">
        <SearchBar></SearchBar>
-        <Box></Box>
+        <Box userInfo={{state}}></Box>
       </div>
+        <div className='market_trends'>
+      {/* <News val={"market-trends"} type="MOST_ACTIVE"></News> */}
+        </div>
       </div>
+           {/* <Marketrends></Marketrends> */}
     </div>
+}
+    </>
   )
 }
 

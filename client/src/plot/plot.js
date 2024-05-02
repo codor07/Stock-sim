@@ -12,9 +12,9 @@ import Year_Plot from './Year_plot';
 import { useLocation } from 'react-router-dom';
 
 const Plot = (props) => {
-  // const location=useLocation();
-  // const {state}=location;
-  // console.log(state);
+  const location=useLocation();
+  const {state}=location;
+  console.log(state);
     const [daily,setDaily]=useState("daily");
    
     const daily_handler=(stock)=>{

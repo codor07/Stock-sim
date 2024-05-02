@@ -54,3 +54,82 @@ export const getUser = async (req, res) => {
     console.log("Some error occured during getting user", error);
   }
 };
+
+export const userBuy = async (req, res) => {
+  try{
+    const {email, newBalance, quantity, company_name, company_invested} = req.body;
+    let prev_quant = 0;
+    for(let item of company_invested){
+      if(item.name === company_name)prev_quant = item.quantity;
+    }
+    let new_company_invested = company_invested.filter(
+      (item) => {
+        return item.name !==  company_name;
+      }
+    )
+    new_company_invested.push({name:company_name, quantity: (quantity + prev_quant)});
+
+    await User.updateOne({email: email}, {
+      $set: {
+        total_money : newBalance,
+        company_invested: new_company_invested
+      }
+    })
+
+    return res.json({ status : "ok", data: "investement has been successfull"});
+  }
+  catch(error){
+
+    return res.json({ status : "not ok", data: error});
+  }
+};
+
+export const userSell = async (req, res) => {
+  try{
+    const {email, ownedCurrently, quantity, newBalance, company_name, company_invested} = req.body;
+    let new_quant = ownedCurrently - quantity;
+    
+    let new_company_invested = company_invested.filter(
+          (item) => {
+            return item.name !==  company_name;
+          }
+        )
+        
+    if(new_quant != 0){
+      new_company_invested.push({name:company_name, quantity: (new_quant)});
+    }
+
+    await User.updateOne({email: email}, {
+      $set: {
+        total_money : newBalance,
+        company_invested: new_company_invested
+      }
+    })
+
+    return res.json({ status : "ok", data: "stock has been sold successfully"});
+  }
+  catch(error){
+
+    return res.json({ status : "not ok", data: "error in selling"});
+  }
+};
+
+
+export const updateUserWatchList = async (req, res) => {
+  try{
+    const {email, newEntry, allWatchList} = req.body;
+    
+    allWatchList.push(newEntry);
+    await User.updateOne({email: email}, {
+      $set: {
+        company_watchlist : allWatchList
+      }
+    })
+
+    return res.json({ status : "ok", data: "watchlist  has been updated"});
+  }
+  catch(error){
+
+    return res.json({ status : "watchlist cannot be updated", data: error});
+  }
+};

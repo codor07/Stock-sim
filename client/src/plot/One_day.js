@@ -136,7 +136,7 @@ function Daily_Plot(props) {
         />
          </div>
          <div className='Plot_First'>
-          <Stock details={{name:name,currentPrice:currentPrice,email:state.val.email,country:country}}></Stock>
+          <Stock details={{name:name,currentPrice:currentPrice,email:state.val.email,password:state.val.password,country:country}}></Stock>
     </div>
         </div>
         <div>

@@ -1,20 +1,41 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './details.css'; 
-const BuyStock = ({ details }) => {
-  const [quantity, setQuantity] = useState(0);
+import axios from 'axios';
 
-  const handleBuy = () => {
+const BuyStock = ({ details }) => {
+  console.log(111);
+  
+  const [quantity, setQuantity] = useState(0);
+  const [userBalance, setUserBalance] = useState(0);
+  // const [userDetails, setUserDetails] = useState(null);
+
+  const handleBuy = async () => {
     const totalPrice = quantity * details.currentPrice;
     if(totalPrice==0){
       alert("0 stocks!");
       return;
     }
       
-    if (totalPrice > details.balance) {
+    if (totalPrice > userBalance) {
       alert("Insufficient balance to buy this quantity of stocks!");
       return;
     }
-    details.balance-=totalPrice;
+    let newBal = userBalance - totalPrice;
+    const userDetail = await axios.post("http://localhost:8000/login-user", {
+      email: details.email,
+      password: details.password,
+    });
+    
+    const response = await axios.post("http://localhost:8000/buy-stock", {
+                email: details.email,
+                newBalance: newBal,
+                quantity: quantity,
+                company_name: details.companyName,
+                company_invested:userDetail.data.userInfo.company_invested,
+    });
+
+    setUserBalance(newBal);
+
     alert(`You've successfully bought ${quantity} stocks of ${details.companyName}`);
   }
 
@@ -22,6 +43,24 @@ const BuyStock = ({ details }) => {
     const newQuantity = parseInt(e.target.value);
     setQuantity(newQuantity);
   }
+
+  useEffect(() => {
+    // Fetch data from an API
+    const asyncFn = async () => {
+      const response = await axios.post("http://localhost:8000/login-user", {
+                email: details.email,
+                password: details.password,
+    });
+    setUserBalance(response.data.userInfo.total_money);
+    // setUserDetails(response.data.userInfo.company_invested);
+    console.log(response);
+    };
+    asyncFn();
+    
+    
+
+
+  });
 
   return (
     <div className="buy-stock">
@@ -32,9 +71,10 @@ const BuyStock = ({ details }) => {
         type="number" 
         id="quantity" 
         value={quantity} 
+        min = "0"
         onChange={handleChangeQuantity}  
       />
-      <p>Available Balance: ${details.balance}</p>
+      <p>Available Balance: ${userBalance}</p>
       <button onClick={handleBuy}>Buy</button>
     </div>
   );

@@ -148,7 +148,7 @@ function Daily_Plot(props) {
       {/* <div>Moving Average for {windowSize} days: {movingAverage.join(', ')}</div> */}
     </div>
     
-    {/* <CompanyNews val={"stock-news"} symbol={state.symbol}></CompanyNews> */}
+    <CompanyNews val={"stock-news"} symbol={state.symbol}></CompanyNews>
     </div>
   )
 }

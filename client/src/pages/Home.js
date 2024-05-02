@@ -22,7 +22,7 @@ const Home = () => {
         <Box userInfo={{state}}></Box>
       </div>
         <div className='market_trends'>
-      {/* <News val={"market-trends"} type="MOST_ACTIVE"></News> */}
+      <News val={"market-trends"} type="MOST_ACTIVE"></News>
         </div>
       </div>
            {/* <Marketrends></Marketrends> */}

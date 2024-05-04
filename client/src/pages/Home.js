@@ -15,14 +15,14 @@ const Home = () => {
   <>
   {state==null?<h2>Login First to watch home page</h2>:
     <div className='root'>
-      <Header></Header>
+      <Header userInfo={{state}}></Header>
       <div className='home_container'>
       <div className="SearchBar">
        <SearchBar></SearchBar>
         <Box userInfo={{state}}></Box>
       </div>
         <div className='market_trends'>
-      {/* <News val={"market-trends"} type="MOST_ACTIVE"></News> */}
+      <News val={"market-trends"} type="MOST_ACTIVE"></News>
         </div>
       </div>
            {/* <Marketrends></Marketrends> */}

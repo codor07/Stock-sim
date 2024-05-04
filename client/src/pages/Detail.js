@@ -55,7 +55,7 @@ const Detail = ({details}) => {
       <button className="sell-button" onClick={handle_sell}>
         Sell
       </button>
-      <button className="watchlist-button" onClick={handle_watchlist}>
+      <button className="watchlist-button button" onClick={handle_watchlist}>
         Watchlist
       </button>
     </div>

@@ -7,8 +7,8 @@ import Stock from '../pages/Detail'
 import CompanyNews from '../pages/home_news'
 function Daily_Plot(props) {
    const  {state} =useLocation();
-   console.log(state.item);
-   console.log(state.val);
+  //  console.log(state.item);
+  //  console.log(state.val);
     const [Xaxis,setXAxis]=useState([]);
     const [Yaxis,setYAxis]=useState([]);
     const [f50axis,set50]=useState([]);
@@ -25,11 +25,12 @@ function Daily_Plot(props) {
         method: 'GET',
         url: 'https://real-time-finance-data.p.rapidapi.com/stock-time-series',
         params: {
-          symbol:state.item.symbol==null?"MSFT":state.item.symbol,
+          symbol:state!=null?state.item.symbol==null?"MSFT":state.item.symbol:"MSFT",
           period: "1D",
           language: 'en'
         },
         headers: {
+          // fceb3faab4msha106e1a12add2ebp125a05jsn0fea7f3145bf
           'X-RapidAPI-Key': 'fceb3faab4msha106e1a12add2ebp125a05jsn0fea7f3145bf',
           'X-RapidAPI-Host': 'real-time-finance-data.p.rapidapi.com'
         }
@@ -136,7 +137,11 @@ function Daily_Plot(props) {
         />
          </div>
          <div className='Plot_First'>
-          <Stock details={{name:name,currentPrice:currentPrice,email:state.val.email,password:state.val.password,country:country}}></Stock>
+          {state!=null?
+          <Stock 
+          details={{name:name,currentPrice:currentPrice,email:state.val.email,password:state.val.password,country:country}}>
+
+          </Stock>:"Login again"}
     </div>
         </div>
         <div>
@@ -147,8 +152,10 @@ function Daily_Plot(props) {
       </select>
       {/* <div>Moving Average for {windowSize} days: {movingAverage.join(', ')}</div> */}
     </div>
-    
-    <CompanyNews val={"stock-news"} symbol={state.symbol}></CompanyNews>
+    {
+      state!=null?
+      <CompanyNews val={"stock-news"} symbol={state.symbol}></CompanyNews>:"No news"
+    }
     </div>
   )
 }

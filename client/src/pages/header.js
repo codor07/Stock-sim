@@ -8,6 +8,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
+import { useNavigate } from 'react-router-dom';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -19,8 +20,9 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
 }));
-const Header = () => {
- 
+const Header = (props) => {
+  // console.log(props.userInfo.state.val)
+  const navigate=useNavigate();
       const classes = useStyles();
       const [anchorEl, setAnchorEl] = useState(null);
       const open = Boolean(anchorEl);
@@ -28,9 +30,16 @@ const Header = () => {
         setAnchorEl(event.currentTarget);
         // console.log(event.currentTarget);
       };
-    
+      const handleLogOut=()=>{
+        alert("Are you sure! you want to logout?")
+        navigate("/login");
+      }
       const handleClose = () => {
         setAnchorEl(null);
+      };
+      const handleProfile = () => {
+        setAnchorEl(null);
+        navigate('/profile',{state:{val:props.userInfo.state.val!=null?props.userInfo.state.val:""}});
       };
   return (
     <div className={classes.root}>
@@ -67,8 +76,9 @@ const Header = () => {
                 open={open}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                <MenuItem onClick={handleProfile}>Profile</MenuItem>
                 <MenuItem onClick={handleClose}>My account</MenuItem>
+                <MenuItem onClick={handleLogOut}>Logout</MenuItem>
               </Menu>
             </div>
         </Toolbar>

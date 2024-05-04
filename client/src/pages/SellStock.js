@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import './details.css'; 
 import axios from 'axios';
-
+import { useNavigate } from "react-router-dom";
 const SellStock = ({ details }) => {
   //console.log(111);
-  
+  const navigate = useNavigate();
+  const handleGoBack = () => {
+    navigate(0);
+  };
   const [quantity, setQuantity] = useState(0);
   const [userBalance, setUserBalance] = useState(0);
   const [ownedCurrently, setOwnedCurrently] = useState(0);
@@ -65,15 +68,14 @@ const SellStock = ({ details }) => {
     console.log(response.data.userInfo.company_invested);
     };
     asyncFn();
-    
-    
-    
-    
-
-
   },[]);
 
   return (
+    <>
+    <div>
+      <button className="arrow-back" onClick={handleGoBack}></button>
+    </div>
+  
     <div className="sell-stock">
       <h2>{details.companyName}</h2>
       <p>Current Price: ${details.currentPrice}</p>
@@ -87,8 +89,9 @@ const SellStock = ({ details }) => {
       />
       <p>Available Balance: ${userBalance}</p>
       <p>Currenntly you own {ownedCurrently} stock of this company</p>
-      <button onClick={handleSell}>Sell</button>
+      <button className='sell-button' onClick={handleSell}>Sell</button>
     </div>
+    </>
   );
 }
 

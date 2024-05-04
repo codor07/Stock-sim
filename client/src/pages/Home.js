@@ -15,7 +15,7 @@ const Home = () => {
   <>
   {state==null?<h2>Login First to watch home page</h2>:
     <div className='root'>
-      <Header></Header>
+      <Header userInfo={{state}}></Header>
       <div className='home_container'>
       <div className="SearchBar">
        <SearchBar></SearchBar>

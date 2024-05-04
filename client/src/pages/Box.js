@@ -15,7 +15,7 @@ const Box = (props) => {
         { name: "Microsoft", symbol: "MSFT", marketValue: 3.18666E+12, country: "United States" },
         { name: "Apple", symbol: "AAPL", marketValue: 2.68843E+12, country: "United States" },
         { name: "NVIDIA", symbol: "NVDA", marketValue: 2.25128E+12, country: "United States" },
-        { name: "Alphabet (Google)", symbol: "GOOG", marketValue: 1.99327E+12, country: "United States" },
+        { name: "Google", symbol: "GOOG", marketValue: 1.99327E+12, country: "United States" },
         { name: "Amazon", symbol: "AMZN", marketValue: 1.96763E+12, country: "United States" },
         { name: "Meta Platforms (Facebook)", symbol: "META", marketValue: 1.33189E+12, country: "United States" },
         { name: "TSMC", symbol: "TSM", marketValue: 7.64202E+11, country: "Taiwan" },
@@ -269,7 +269,6 @@ const Box = (props) => {
            <div className="container">
     {data.map((item, index) => (
         <Link to='/plot' state={{item:item ,val:props.userInfo.state.val}} className="BOX" >
-        {/* // <Link to={{ pathname: '/plot', state: {item} }} className="BOX"> */}
               <Element key={index} {...item} />
         </Link>
     ))};

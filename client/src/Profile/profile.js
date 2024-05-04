@@ -2,20 +2,35 @@
 import React, { useState, useEffect } from 'react';
 import {useLocation} from 'react-router-dom'
 import './profile.css'
-import axios from 'axios';
+import axios from 'axios'
+import Watchlist from './watchlist_invested';
 const PortfolioPage = () => {
   const location=useLocation();
   const {state}=location;
-  console.log(state.val);
-  const [profile,setProfile]=useState({});
+  console.log(state.val.email);
+  const [profile,setProfile]=useState(null);
   useEffect(()=>{
-         storeData();
-        
+        fetchData();
+         
   },[]);
-  const storeData=()=>{
-       setProfile(state.val);
-  }
+  const fetchData=async ()=>{
+     try{
+      const response = await axios.post("http://localhost:8000/login-user", {
+        email: state.val.email,
+        password:state.val.password,
+      });
+      console.log(response.data.userInfo)
+      setProfile(response.data.userInfo)
+     }catch(err){
+      console.log(err)
+     }
+     
+    }
   return (
+    <>
+    {
+      state!=null&&profile!=null?
+    
     <div className="portfolio-container">
       <h2>My Stock Portfolio</h2>
       <div className="portfolio-details">
@@ -26,10 +41,27 @@ const PortfolioPage = () => {
           <p><strong>Total Portfolio Value:</strong> ${profile.total_money}</p>
         </div>
         <div className="portfolio-stocks">
-          <h3>Stock Holdings</h3>
+          <h3>Watchlist</h3>
+          {console.log(profile.company_watchlist.length)}
+          <ul>
+        {profile!=null?profile.company_watchlist.length>0?profile.company_watchlist.map((item, index) => (
+          // <li key={index}>{item}</li>
+          <Watchlist key={index} item={item} />
+        )):"no watchlist added":"Some Error Occured"}
+      </ul>
+      <h3>Company Invested</h3>
+          
+        {profile!=null?profile.company_invested.length>0?profile.company_invested.map((item, index) => (
+          <li key={index}>{item.name} {item.quantity}</li>
+          
+        )):"No Invested":"Some Error Occured"}
+     
+          
         </div>
       </div>
     </div>
+:<div>Login first </div>}
+    </>
   );
 };
 

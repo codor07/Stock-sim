@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './details.css'; 
 import axios from 'axios';
-
+import { useNavigate } from "react-router-dom";
 const BuyStock = ({ details }) => {
-  console.log(111);
-  
+  const navigate = useNavigate();
+  const handleGoBack = () => {
+    navigate(0);
+  };
   const [quantity, setQuantity] = useState(0);
   const [userBalance, setUserBalance] = useState(0);
   // const [userDetails, setUserDetails] = useState(null);
@@ -56,13 +58,12 @@ const BuyStock = ({ details }) => {
     console.log(response);
     };
     asyncFn();
-    
-    
-
-
   });
-
   return (
+    <>
+   <div>
+      <button className="arrow-back" onClick={handleGoBack}></button>
+    </div>
     <div className="buy-stock">
       <h2>{details.companyName}</h2>
       <p>Current Price: ${details.currentPrice}</p>
@@ -75,8 +76,10 @@ const BuyStock = ({ details }) => {
         onChange={handleChangeQuantity}  
       />
       <p>Available Balance: ${userBalance}</p>
-      <button onClick={handleBuy}>Buy</button>
+      <button className='button' 
+      onClick={handleBuy}>Buy</button>
     </div>
+    </>
   );
 }
 

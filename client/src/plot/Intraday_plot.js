@@ -64,8 +64,7 @@ function IntraDay_plot(props) {
      
         // Call the 'fetchData' function when the component mounts (empty dependency array)
         fetchData();
-      }, []);
-      
+      }, []);    
  // Handle select change
 
       const fetchData= async()=>{

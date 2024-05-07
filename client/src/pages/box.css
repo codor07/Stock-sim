@@ -4,15 +4,16 @@
   background-size: cover;
 }
 .container {
+    padding-left: 8px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     background-color: rgb(198 192 192 / 15%);
-   text-decoration: none;
-   /* border: 2px solid red; */
-   width:325px;
-   overflow: scroll;
-   height: 600px;
+    text-decoration: none;
+    /* border: 2px solid red; */
+    width: 450px;
+    overflow: scroll;
+    height: 600px;
   }
   .container::-webkit-scrollbar {
     display: none;
@@ -20,13 +21,16 @@
   .BOX{
     text-decoration: none;
     height: 50px;
-    margin: 1px;
-    width:100%;
-    border-bottom: 1px solid rgb(89, 89, 89);
+    margin: 2px;
+    width: 100%;
+    /* border-radius: 5px; */
+    /* background: linear-gradient(45deg, #686767b5 30%, #80838fbd 90%); */
+    border-bottom: 1px solid rgb(44, 18, 102);
   }
   .box {
     color: black;
-   
+    padding-left: 8px;
+    font-size: 21px;
   }
 
   
@@ -52,14 +56,12 @@
     flex-wrap: wrap;
   }
   .market_trends{
-    margin: 5px;
-    width: 70%;
+    margin: 50px;
+    font-size: 28px;
+    width: 60%;
     height: 683px;
     overflow: scroll;
   }
   .market_trends::-webkit-scrollbar {
     display: none;
 }
-  .SearchBar{
-    /* flex:30%; */
-  }

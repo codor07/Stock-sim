@@ -2,8 +2,9 @@
 
 .search-bar-container {
     width: 290px;
+    background: transparent;
     /* align-content: center; */
-    margin: 4px auto;
+    margin: 6px auto;
     /* border: 2px solid red; */
     display: inline-block;
     text-align: center;
@@ -56,4 +57,3 @@
   .search-button:hover {
     background-color: #0056b3;
   }
-    

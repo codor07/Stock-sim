@@ -3,8 +3,8 @@ import './box.css';
 import { Link } from 'react-router-dom';
 const Element = ({ name, symbol, marketValue,country }) => (
     <div className="box">
-      <div>{name}</div>
-      <p>Symbol: {symbol}</p>  
+      <div style={{ color: 'black' }}>{name}</div>
+      <p style={{ color: '#0a0e63' }}>Symbol: {symbol}</p>  
       {/* <p>marketValue:{marketValue} $</p> */}
       {/* <p>country:{country}</p> */}
     </div>

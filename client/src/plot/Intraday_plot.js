@@ -28,7 +28,10 @@ function IntraDay_plot(props) {
           language: 'en'
         },
         headers: {
-          'X-RapidAPI-Key': 'ee4e2bab1bmshe865451e66a82bcp16bdb1jsn6dc8393b3b27',
+          // 'X-RapidAPI-Key': 'ee4e2bab1bmshe865451e66a82bcp16bdb1jsn6dc8393b3b27',
+          // 'X-RapidAPI-Host': 'real-time-finance-data.p.rapidapi.com',
+
+          'X-RapidAPI-Key': 'fceb3faab4msha106e1a12add2ebp125a05jsn0fea7f3145bf',
           'X-RapidAPI-Host': 'real-time-finance-data.p.rapidapi.com'
         }
       };

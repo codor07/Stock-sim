@@ -45,11 +45,11 @@ const Header = (props) => {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+          {/* <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" className={classes.title}>
-              Stock Simulator and Paper Trading
+          </IconButton> */}
+          <Typography variant="h6" className={classes.title} style={{ textAlign:'center', fontSize: '30px' }}>
+              Stock Predictor and Paper Trading
           </Typography>
             <div>
               <IconButton
@@ -59,7 +59,7 @@ const Header = (props) => {
                 onClick={handleMenu}
                 color="inherit"
               >
-                <AccountCircle />
+                <AccountCircle style={{fontSize: '50px'}} />
               </IconButton>
               <Menu
                 id="menu-appbar"

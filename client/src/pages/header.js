@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 const Header = (props) => {
-  // console.log(props.userInfo.state.val)
+  console.log(props.userInfo)
   const navigate=useNavigate();
       const classes = useStyles();
       const [anchorEl, setAnchorEl] = useState(null);
@@ -41,15 +41,19 @@ const Header = (props) => {
         setAnchorEl(null);
         navigate('/profile',{state:{val:props.userInfo.state.val!=null?props.userInfo.state.val:""}});
       };
+      const handleHome = () => {
+        setAnchorEl(null);
+        navigate('/',{state:{val:props.userInfo.state.val!=null?props.userInfo.state.val:""}});
+      };
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+          {/* <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" className={classes.title}>
-              Stock Simulator and Paper Trading
+          </IconButton> */}
+          <Typography variant="h6" className={classes.title} style={{ textAlign:'center', fontSize: '30px' }}>
+              Stock Predictor and Paper Trading
           </Typography>
             <div>
               <IconButton
@@ -59,7 +63,7 @@ const Header = (props) => {
                 onClick={handleMenu}
                 color="inherit"
               >
-                <AccountCircle />
+                <AccountCircle style={{fontSize: '50px'}} />
               </IconButton>
               <Menu
                 id="menu-appbar"
@@ -76,8 +80,8 @@ const Header = (props) => {
                 open={open}
                 onClose={handleClose}
               >
+                <MenuItem onClick={handleHome}>Home</MenuItem>
                 <MenuItem onClick={handleProfile}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
                 <MenuItem onClick={handleLogOut}>Logout</MenuItem>
               </Menu>
             </div>

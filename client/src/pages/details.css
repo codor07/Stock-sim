@@ -3,6 +3,7 @@
     border-radius: 5px;
     padding: 10px;
     margin-bottom: 20px;
+    background: #ccc;
   }
   
   .buttons {
@@ -23,8 +24,11 @@
     border-radius: 5px;
   }
   
-  .buy-button:hover, .sell-button:hover {
+  .buy-button:hover {
     background-color: #45a049;
+  }
+  .sell-button:hover{
+    background-color: red;
   }
   .buy-stock {
     border: 1px solid #ccc;
@@ -89,6 +93,7 @@
   .watchlist-button {
     background-color: #2196F3;
     color: white;
+    margin-left: 2px;
   }
   
   button i {
@@ -104,4 +109,3 @@
   border-radius: 10px;
   background-color: darkgray;
 }
-  

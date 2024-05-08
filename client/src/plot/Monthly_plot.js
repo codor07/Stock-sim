@@ -28,7 +28,7 @@ function Monthly_plot(props) {
           language: 'en'
         },
         headers: {
-          'X-RapidAPI-Key': 'ee4e2bab1bmshe865451e66a82bcp16bdb1jsn6dc8393b3b27',
+          'X-RapidAPI-Key': 'c31d153c5dmsha381f7a79f346a1p1e1c62jsn1c0711182248',
           'X-RapidAPI-Host': 'real-time-finance-data.p.rapidapi.com'
         }
       };

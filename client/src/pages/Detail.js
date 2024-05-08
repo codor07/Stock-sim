@@ -5,7 +5,7 @@ import axios from 'axios';
 import SellStock from './SellStock';
 
 const Detail = ({details}) => {
-  console.log(details);
+  console.log(details.email);
   const [showBuy,setShowBuy]=useState();
   const [showSell,setShowSell]=useState();
   const handle_buy=()=>{
@@ -46,8 +46,8 @@ const Detail = ({details}) => {
       { 
         (!showBuy && !showSell?<> 
          <h2>{details.name}</h2>
-        <p>Current Price: {details.currentPrice}{`${details.country=="India"?" Rs":" $"}`}</p>
-        <p>Email:{details.email}</p>
+        <p style={{ marginLeft: '83px' }}>Current Price: {details.currentPrice}{`${details.country=="India"?" Rs":" $"}`}</p>
+        <p style={{ marginLeft: '83px', marginBottom: '15px' }}>Email: {details.email}</p>
         <div className="button-container">
       <button className="buy-button" onClick={handle_buy}>
         Buy

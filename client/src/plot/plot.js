@@ -13,8 +13,7 @@ import { useLocation } from 'react-router-dom';
 const Plot = (props) => {
   const location=useLocation();
   const {state}=location;
-  //  console.log(state.item);
-  // console.log(state.val);
+ 
     const [daily,setDaily]=useState("daily");
    
     const daily_handler=(stock)=>{
@@ -25,14 +24,14 @@ const Plot = (props) => {
          <Header userInfo={{state}}></Header>
          <div className='button_plot'>
            
-    <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
-        <Button onClick={()=>{daily_handler("daily")}}>Daily</Button>
-        <Button onClick={()=>{daily_handler("day")}}>5 Day</Button>
-        <Button onClick={()=>{daily_handler("month")}}>Monthly</Button>
-        <Button onClick={()=>{daily_handler("year")}}>Year</Button>
+    <ButtonGroup style={{margin: '5px' }} variant="contained" color="primary" aria-label="contained primary button group">
+        <Button style={{ marginRight: '3px', borderRadius: '5px' }} onClick={()=>{daily_handler("daily")}}>Daily</Button>
+        <Button style={{ marginRight: '3px', borderRadius: '5px' }} onClick={()=>{daily_handler("day")}}>5 Day</Button>
+        <Button style={{ marginRight: '3px', borderRadius: '5px' }} onClick={()=>{daily_handler("month")}}>Monthly</Button>
+        <Button style={{ borderRadius: '5px' }} onClick={()=>{daily_handler("year")}}>Year</Button>
       </ButtonGroup>
       {
-           ( daily==="daily")?<DailyPlot/>:(daily==="month")?<MonthlyPlot/>:(daily==="day")?<IntradayPlot/>:<Year_Plot/>
+           ( daily==="daily")?<DailyPlot search={props.search}/>:(daily==="month")?<MonthlyPlot/>:(daily==="day")?<IntradayPlot/>:<Year_Plot/>
           }
       </div>
           </div>

@@ -18,7 +18,7 @@ const Home = () => {
       <Header userInfo={{state}}></Header>
       <div className='home_container'>
       <div className="SearchBar">
-       <SearchBar></SearchBar>
+       <SearchBar userInfo={{state}}></SearchBar>
         <Box userInfo={{state}}></Box>
       </div>
         <div className='market_trends'>

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import {useLocation} from 'react-router-dom'
 import './profile.css'
 import axios from 'axios'
+import Header from '../pages/header';
 import Watchlist from './watchlist_invested';
 const PortfolioPage = () => {
   const location=useLocation();
@@ -28,6 +29,7 @@ const PortfolioPage = () => {
     }
   return (
     <>
+      <Header userInfo={{state}}></Header> 
     {
       state!=null&&profile!=null?
     
@@ -59,7 +61,7 @@ const PortfolioPage = () => {
         )):"No Invested":"Some Error Occured"}
       */}
       <h3>Company Invested</h3>
-    <div className="company-list" style={{ borderBottom: '2px solid black', width: '420px', borderRadius: '4px' }}>
+    <div className="company-list" style={{ borderBottom: '2px solid black', width: '535px', borderRadius: '4px' }}>
       {profile.company_invested.length > 0 ? (
         profile.company_invested.map((item, index) => (
           <div className="company-item" key={index}>

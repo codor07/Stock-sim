@@ -13,8 +13,7 @@ import { useLocation } from 'react-router-dom';
 const Plot = (props) => {
   const location=useLocation();
   const {state}=location;
-  //  console.log(state.item);
-  // console.log(state.val);
+ 
     const [daily,setDaily]=useState("daily");
    
     const daily_handler=(stock)=>{
@@ -32,7 +31,7 @@ const Plot = (props) => {
         <Button style={{ borderRadius: '5px' }} onClick={()=>{daily_handler("year")}}>Year</Button>
       </ButtonGroup>
       {
-           ( daily==="daily")?<DailyPlot/>:(daily==="month")?<MonthlyPlot/>:(daily==="day")?<IntradayPlot/>:<Year_Plot/>
+           ( daily==="daily")?<DailyPlot search={props.search}/>:(daily==="month")?<MonthlyPlot/>:(daily==="day")?<IntradayPlot/>:<Year_Plot/>
           }
       </div>
           </div>

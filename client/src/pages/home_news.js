@@ -6,12 +6,13 @@ const Element = (item) => (
     <div className="box3">
         <Link to={item.article_url} className='box4'> 
         <div className='article_photo'>
-              <img src={item.article_photo_url} alt='alter_image' />
+              <img className="news_image"
+              src={item.article_photo_url} alt='alter_image' />
            </div>
        <div className='article_title'>
          <p className="title"> {item.article_title}</p>
-         <span>post: {item.post_time_utc}</span>
-         <span> source:{item.source}</span>
+         <span className='post_news'>post: {item.post_time_utc}</span>
+         <span > source:{item.source}</span>
        </div>
           
         </Link>
@@ -20,6 +21,7 @@ const Element = (item) => (
 function Market_news(props) {
   console.log(props.val);
   console.log(props.type);
+  console.log(props.symbol)
     const [news,setNews]=useState(undefined);
     const options = {
         method: 'GET',
@@ -31,7 +33,7 @@ function Market_news(props) {
           symbol:props.symbol
         },
         headers: {
-          'X-RapidAPI-Key': '697c9f81cfmsha51928d583682a8p1a23aejsn3208779b6e6b',
+          'X-RapidAPI-Key': 'c31d153c5dmsha381f7a79f346a1p1e1c62jsn1c0711182248',
           'X-RapidAPI-Host': 'real-time-finance-data.p.rapidapi.com'
         }
       };

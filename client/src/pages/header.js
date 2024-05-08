@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 const Header = (props) => {
-  // console.log(props.userInfo.state.val)
+  console.log(props.userInfo)
   const navigate=useNavigate();
       const classes = useStyles();
       const [anchorEl, setAnchorEl] = useState(null);
@@ -40,6 +40,10 @@ const Header = (props) => {
       const handleProfile = () => {
         setAnchorEl(null);
         navigate('/profile',{state:{val:props.userInfo.state.val!=null?props.userInfo.state.val:""}});
+      };
+      const handleHome = () => {
+        setAnchorEl(null);
+        navigate('/',{state:{val:props.userInfo.state.val!=null?props.userInfo.state.val:""}});
       };
   return (
     <div className={classes.root}>
@@ -76,8 +80,8 @@ const Header = (props) => {
                 open={open}
                 onClose={handleClose}
               >
+                <MenuItem onClick={handleHome}>Home</MenuItem>
                 <MenuItem onClick={handleProfile}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
                 <MenuItem onClick={handleLogOut}>Logout</MenuItem>
               </Menu>
             </div>

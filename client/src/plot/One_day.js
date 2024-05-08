@@ -17,7 +17,7 @@ function Daily_Plot(props) {
     const [windowSize, setWindowSize] = useState(10);
     const[movingAverage,setMovingAverage]=useState([]);
     const [name,setName]=useState("");
-    const [marketVal,setValue]=useState("");
+    // const [marketVal,setValue]=useState("");
     const [currentPrice,setCurrentPrice]=useState("");
     const [country,setCountry]=useState("");
    
@@ -25,13 +25,12 @@ function Daily_Plot(props) {
         method: 'GET',
         url: 'https://real-time-finance-data.p.rapidapi.com/stock-time-series',
         params: {
-          symbol:state!=null?state.item.symbol==null?"MSFT":state.item.symbol:"MSFT",
+          symbol:state!=null?state.item.symbol==null?props.search.symbol:state.item.symbol:"MSFT",
           period: "1D",
           language: 'en'
         },
         headers: {
-          // fceb3faab4msha106e1a12add2ebp125a05jsn0fea7f3145bf
-          'X-RapidAPI-Key': 'fceb3faab4msha106e1a12add2ebp125a05jsn0fea7f3145bf',
+          'X-RapidAPI-Key': 'c31d153c5dmsha381f7a79f346a1p1e1c62jsn1c0711182248',
           'X-RapidAPI-Host': 'real-time-finance-data.p.rapidapi.com'
         }
       };
@@ -76,8 +75,11 @@ function Daily_Plot(props) {
            
             const response = await axios.request(options);
             console.log(response.data.data);
+            if(state==null||state.item==null)
+              setName(props.search.name)
+            else
             setName(state.item.name);
-            setValue(state.item.marketValue===undefined?"NA":state.item.marketValue)
+            // setValue(state.item.marketValue===undefined?"NA":state.item.marketValue)
             setCountry(state.item.country===undefined?state.item.country_code==="IN"?"India":"US":state.item.country)
             let stockChartXValuesFunction = [];
             let stockChartYValuesFunction = [];
@@ -102,8 +104,8 @@ function Daily_Plot(props) {
         <div className='name_company'>
           <div> {name}</div>
           {/* <div> Market Value-{marketVal} {`${country==="India"?'INR':'$'}`}</div> */}
-          <div> Country-{country}</div>
-          <div > Last Traded Value:{currentPrice} {`${country==="India"?'INR':'$'}`}</div>
+          <div> Country:{country}</div>
+          <div > Last Traded Value:{currentPrice}{`${country==="India"?'INR':'$'}`}</div>
         </div>
         <div className='plot_graph'>
           <div className='button_plot'>
@@ -146,7 +148,7 @@ function Daily_Plot(props) {
         </div>
         <div>
       <select value={windowSize} onChange={handleSelectChange}>
-        <option value="10">10 Days</option>
+        {/* <option value="10">10 Days</option> */}
         <option value="50">50 Days</option>
         <option value="100">100 Days</option>
       </select>
@@ -154,7 +156,7 @@ function Daily_Plot(props) {
     </div>
     {
       state!=null?
-      <CompanyNews val={"stock-news"} symbol={state.symbol}></CompanyNews>:"No news"
+      <CompanyNews val={"stock-news"} symbol={state.item.symbol}></CompanyNews>:"No news"
     }
     </div>
   )

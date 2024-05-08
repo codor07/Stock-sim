@@ -2,20 +2,23 @@ import React, { useEffect ,useState} from 'react';
 import axios from 'axios';
 import './plot.css'
 import PlotGraph from 'react-plotly.js';
-import { useLocation } from 'react-router-dom';
 import Stock from '../pages/Detail'
-function IntraDay_plot(props) {
-   const  {state} =useLocation();
-   console.log(state);
+import CompanyNews from '../pages/home_news'
+import { useLocation } from 'react-router-dom';
+import Header from '../pages/header'
+function SearchPlot(props) {
+    const location=useLocation();
+    const {state}=location;
+    console.log(state)
+   console.log(state.val.state.val);
+   console.log(state.search);
     const [Xaxis,setXAxis]=useState([]);
     const [Yaxis,setYAxis]=useState([]);
     const [f50axis,set50]=useState([]);
     const [f100axis,set100]=useState([]);
-    const [f10axis,set10]=useState([]);
     const [windowSize, setWindowSize] = useState(10);
     const[movingAverage,setMovingAverage]=useState([]);
     const [name,setName]=useState("");
-    const [marketVal,setValue]=useState("");
     const [currentPrice,setCurrentPrice]=useState("");
     const [country,setCountry]=useState("");
    
@@ -23,8 +26,8 @@ function IntraDay_plot(props) {
         method: 'GET',
         url: 'https://real-time-finance-data.p.rapidapi.com/stock-time-series',
         params: {
-          symbol:state.item.symbol==null?"MSFT":state.item.symbol,
-          period: "5D",
+          symbol:state.search==null?"MSFT":state.search.symbol,
+          period: "1D",
           language: 'en'
         },
         headers: {
@@ -51,30 +54,25 @@ function IntraDay_plot(props) {
       console.log(val)
       setWindowSize(val);
       const movingDays=calculateMovingAverage(movingAverage,val);
-      console.log(movingDays);
-      if(val==5){ 
+      if(val==50){ 
         set50(movingDays);
       }
-      else if(val==10){
+      else if(val==100){
         set100(movingDays);
       }
           
     };
       useEffect(() => {
-     
-        // Call the 'fetchData' function when the component mounts (empty dependency array)
         fetchData();
-      }, []);    
- // Handle select change
-
+      }, []);
+      
       const fetchData= async()=>{
         try {
            
             const response = await axios.request(options);
             console.log(response.data.data);
-            setName(state.item.name);
-            setValue(state.item.marketValue===undefined?"NA":state.item.marketValue)
-            setCountry(state.item.country===undefined?state.item.country_code==="IN"?"India":"US":state.item.country)
+             setName(state.search!==undefined?state.search.name:"MicroSoft")
+            setCountry(state.search.country===undefined?state.search.country_code==="IN"?"India":"US":state.search.country)
             let stockChartXValuesFunction = [];
             let stockChartYValuesFunction = [];
                 setCurrentPrice(response.data.data.price);
@@ -94,23 +92,20 @@ function IntraDay_plot(props) {
      
   return (
     <div>
-      {/* <Header></Header> */}
+          <Header userInfo={state.val}></Header>
         <div className='name_company'>
           <div> {name}</div>
-          {/* <div> Market Value-{marketVal} {`${country==="India"?'INR':'$'}`}</div> */}
-          <div> Country-{country}</div>
+          <div> Country:{country}</div>
           <div > Last Traded Value:{currentPrice} {`${country==="India"?'INR':'$'}`}</div>
         </div>
         <div className='plot_graph'>
           <div className='button_plot'>
-
-         
         <PlotGraph
           data={[
             {
               x:Xaxis,
               y:Yaxis,
-              type: 'line',
+              type: 'scatter',
               mode: 'lines+markers',
               marker: {color: 'green'},
             },
@@ -133,21 +128,26 @@ function IntraDay_plot(props) {
         />
          </div>
          <div className='Plot_First'>
-         <Stock details={{name:name,currentPrice:currentPrice,email:state.val.email,country:country}}></Stock>
+          {state!=null?
+          <Stock 
+          details={{name:name,currentPrice:currentPrice,email:state.val.state.val.email,password:state.val.state.val.password,country:country}}>
+
+          </Stock>:"Login again"}
     </div>
         </div>
         <div>
       <select value={windowSize} onChange={handleSelectChange}>
-        <option value="5">5 Days</option>
-        <option value="10">10 Days</option>
-        <option value="20">20 Days</option>
+        <option value="50">50 Days</option>
+        <option value="100">100 Days</option>
       </select>
-      {/* <div>Moving Average for {windowSize} days: {movingAverage.join(', ')}</div> */}
     </div>
-    
+    {
+      state.search!=null?
+      <CompanyNews val={"stock-news"} symbol={state.search.symbol}></CompanyNews>:"No news"
+    }
     </div>
   )
 }
 
-export default IntraDay_plot;
+export default SearchPlot;
   

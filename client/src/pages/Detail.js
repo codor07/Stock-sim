@@ -5,7 +5,7 @@ import axios from 'axios';
 import SellStock from './SellStock';
 
 const Detail = ({details}) => {
-  console.log(details);
+  console.log(details.email);
   const [showBuy,setShowBuy]=useState();
   const [showSell,setShowSell]=useState();
   const handle_buy=()=>{

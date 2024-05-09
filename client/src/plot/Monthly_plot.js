@@ -4,6 +4,7 @@ import './plot.css'
 import PlotGraph from 'react-plotly.js';
 import { useLocation } from 'react-router-dom';
 import Stock from '../pages/Detail'
+import CompanyNews from '../pages/home_news'
 function Monthly_plot(props) {
    const  {state} =useLocation();
    console.log(state.item);
@@ -11,11 +12,10 @@ function Monthly_plot(props) {
     const [Yaxis,setYAxis]=useState([]);
     const [f50axis,set50]=useState([]);
     const [f100axis,set100]=useState([]);
-    // const [f10axis,set10]=useState([]);
+    const [f10axis,set10]=useState([]);
     const [windowSize, setWindowSize] = useState(10);
     const[movingAverage,setMovingAverage]=useState([]);
     const [name,setName]=useState("");
-    const [marketVal,setValue]=useState("");
     const [currentPrice,setCurrentPrice]=useState("");
     const [country,setCountry]=useState("");
    
@@ -28,7 +28,7 @@ function Monthly_plot(props) {
           language: 'en'
         },
         headers: {
-          'X-RapidAPI-Key': 'c31d153c5dmsha381f7a79f346a1p1e1c62jsn1c0711182248',
+          'X-RapidAPI-Key': '7c78eb2769msh093d9065f815be7p1715eajsn685e47bf8bb8',
           'X-RapidAPI-Host': 'real-time-finance-data.p.rapidapi.com'
         }
       };
@@ -52,11 +52,13 @@ function Monthly_plot(props) {
       setWindowSize(val);
       // console.log(movingAverage);
       const movingDays=calculateMovingAverage(movingAverage,val);
-      if(val==50){ 
+      if(val==2){ 
         set50(movingDays);
       }
-      else if(val==100){
+      else if(val==4){
         set100(movingDays);
+      } else if(val==6){
+        set10(movingDays);
       }
           
     };
@@ -74,7 +76,6 @@ function Monthly_plot(props) {
             const response = await axios.request(options);
             console.log(response.data.data);
             setName(state.item.name);
-            setValue(state.item.marketValue===undefined?"NA":state.item.marketValue)
             setCountry(state.item.country===undefined?state.item.country_code==="IN"?"India":"US":state.item.country)
             let stockChartXValuesFunction = [];
             let stockChartYValuesFunction = [];
@@ -128,24 +129,37 @@ function Monthly_plot(props) {
               type: 'line',
               mode: 'lines',
               marker: {color: 'blue'},
+            },
+            {
+              x:Xaxis,
+              y:f10axis,
+              type: 'line',
+              mode: 'lines',
+              marker: {color: 'orange'},
             }
           ]}
           layout={{width: 850, height: 540, title:`Company name: ${name}` }}
         />
          </div>
          <div className='Plot_First'>
-         <Stock details={{name:name,currentPrice:currentPrice,email:state.val.email,country:country}}></Stock>
-    </div>
+         {state!=null?
+          <Stock 
+          details={{name:name,currentPrice:currentPrice,email:state.val.email,password:state.val.password,country:country}}>
+
+          </Stock>:"Login again"}
+          </div>
         </div>
         <div>
       <select value={windowSize} onChange={handleSelectChange}>
-        <option value="10">10 Days</option>
-        <option value="50">50 Days</option>
-        <option value="100">100 Days</option>
+        <option value="2">Moving Average 2 days</option>
+        <option value="4">Moving Average 4 days</option>
+        <option value="6">Moving Average 6 days</option>
       </select>
-      {/* <div>Moving Average for {windowSize} days: {movingAverage.join(', ')}</div> */}
     </div>
-    
+    {
+      state!=null?
+      <CompanyNews val={"stock-news"} symbol={state.item.symbol}></CompanyNews>:"No news"
+    }
     </div>
   )
 }

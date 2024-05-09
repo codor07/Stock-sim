@@ -4,6 +4,7 @@ import './plot.css'
 import PlotGraph from 'react-plotly.js';
 import { useLocation } from 'react-router-dom';
 import Stock from '../pages/Detail'
+import CompanyNews from '../pages/home_news'
 function IntraDay_plot(props) {
    const  {state} =useLocation();
    console.log(state);
@@ -15,7 +16,6 @@ function IntraDay_plot(props) {
     const [windowSize, setWindowSize] = useState(10);
     const[movingAverage,setMovingAverage]=useState([]);
     const [name,setName]=useState("");
-    const [marketVal,setValue]=useState("");
     const [currentPrice,setCurrentPrice]=useState("");
     const [country,setCountry]=useState("");
    
@@ -28,7 +28,7 @@ function IntraDay_plot(props) {
           language: 'en'
         },
         headers: {
-          'X-RapidAPI-Key': 'c31d153c5dmsha381f7a79f346a1p1e1c62jsn1c0711182248',
+          'X-RapidAPI-Key': '7c78eb2769msh093d9065f815be7p1715eajsn685e47bf8bb8',
           'X-RapidAPI-Host': 'real-time-finance-data.p.rapidapi.com'
         }
       };
@@ -57,6 +57,8 @@ function IntraDay_plot(props) {
       }
       else if(val==10){
         set100(movingDays);
+      } else if(val==20){
+        set10(movingDays);
       }
           
     };
@@ -73,7 +75,6 @@ function IntraDay_plot(props) {
             const response = await axios.request(options);
             console.log(response.data.data);
             setName(state.item.name);
-            setValue(state.item.marketValue===undefined?"NA":state.item.marketValue)
             setCountry(state.item.country===undefined?state.item.country_code==="IN"?"India":"US":state.item.country)
             let stockChartXValuesFunction = [];
             let stockChartYValuesFunction = [];
@@ -128,23 +129,38 @@ function IntraDay_plot(props) {
               mode: 'lines',
               marker: {color: 'blue'},
             }
+            ,
+            {
+              x:Xaxis,
+              y:f10axis,
+              type: 'line',
+              mode: 'lines',
+              marker: {color: 'orange'},
+            }
           ]}
           layout={{width: 850, height: 540, title:`Company name: ${name}` }}
         />
          </div>
          <div className='Plot_First'>
-         <Stock details={{name:name,currentPrice:currentPrice,email:state.val.email,country:country}}></Stock>
+         {state!=null?
+          <Stock 
+          details={{name:name,currentPrice:currentPrice,email:state.val.email,password:state.val.password,country:country}}>
+
+          </Stock>:"Login again"}
     </div>
         </div>
         <div>
       <select value={windowSize} onChange={handleSelectChange}>
-        <option value="5">5 Days</option>
-        <option value="10">10 Days</option>
-        <option value="20">20 Days</option>
+        <option value="5">Moving Average 5 Days</option>
+        <option value="10">Moving Average 10 Days</option>
+        <option value="20">Moving Average 20 Days</option>
       </select>
       {/* <div>Moving Average for {windowSize} days: {movingAverage.join(', ')}</div> */}
     </div>
-    
+    {
+      state!=null?
+      <CompanyNews val={"stock-news"} symbol={state.item.symbol}></CompanyNews>:"No news"
+    }
     </div>
   )
 }

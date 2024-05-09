@@ -10,8 +10,8 @@ function App() {
     <Router>
       <Routes>
         <Route index path='/' element={<Home/>}></Route>
-        <Route path='/register' element={<Register />}></Route>
         <Route path='/login' element={<Login />}></Route>
+        <Route path='/register' element={<Register />}></Route>
         <Route path='/plot' element={<Plot/>}></Route>
         <Route path='/profile' element={<Profile/>}></Route>
         <Route path='/search' element={<Search/>}></Route>

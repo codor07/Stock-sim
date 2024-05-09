@@ -6,7 +6,6 @@ import './plot.css'
 import { useState } from 'react';
 import MonthlyPlot from './Monthly_plot';
 import DailyPlot from './One_day';
-import IntradayPlot from './Intraday_plot';
 import Year_Plot from './Year_plot';
 import { useLocation } from 'react-router-dom';
 
@@ -15,9 +14,12 @@ const Plot = (props) => {
   const {state}=location;
  
     const [daily,setDaily]=useState("daily");
+    const [activeButton, setActiveButton] = useState("daily");
+
    
     const daily_handler=(stock)=>{
            setDaily(stock);
+           setActiveButton(stock);
     }
   return (
     <div className="root">
@@ -25,13 +27,21 @@ const Plot = (props) => {
          <div className='button_plot'>
            
     <ButtonGroup style={{margin: '5px' }} variant="contained" color="primary" aria-label="contained primary button group">
-        <Button style={{ marginRight: '3px', borderRadius: '5px' }} onClick={()=>{daily_handler("daily")}}>Daily</Button>
-        <Button style={{ marginRight: '3px', borderRadius: '5px' }} onClick={()=>{daily_handler("day")}}>5 Day</Button>
-        <Button style={{ marginRight: '3px', borderRadius: '5px' }} onClick={()=>{daily_handler("month")}}>Monthly</Button>
-        <Button style={{ borderRadius: '5px' }} onClick={()=>{daily_handler("year")}}>Year</Button>
+        <Button style={{ marginRight: '3px', borderRadius: '5px' }} 
+          variant={activeButton === 'daily' ? 'contained' : 'outlined'}
+          color={activeButton === 'daily' ? 'primary' : 'default'}
+        onClick={()=>{daily_handler("daily")}}>Daily</Button>
+        <Button style={{ marginRight: '3px', borderRadius: '5px' }} 
+         variant={activeButton === 'month' ? 'contained' : 'outlined'}
+         color={activeButton === 'month' ? 'primary' : 'default'}
+        onClick={()=>{daily_handler("month")}}>Monthly</Button>
+        <Button style={{ borderRadius: '5px' }} 
+         variant={activeButton === 'year' ? 'contained' : 'outlined'}
+         color={activeButton === 'year' ? 'primary' : 'default'}
+        onClick={()=>{daily_handler("year")}}>Year</Button>
       </ButtonGroup>
       {
-           ( daily==="daily")?<DailyPlot search={props.search}/>:(daily==="month")?<MonthlyPlot/>:(daily==="day")?<IntradayPlot/>:<Year_Plot/>
+           ( daily==="daily")?<DailyPlot search={props.search}/>:(daily==="month")?<MonthlyPlot/>:(daily==="day")?<Year_Plot/>:<DailyPlot/>
           }
       </div>
           </div>

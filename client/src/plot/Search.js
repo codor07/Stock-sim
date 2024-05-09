@@ -20,7 +20,7 @@ const options = {
       language: 'en'
     },
     headers: {
-      'X-RapidAPI-Key': 'c31d153c5dmsha381f7a79f346a1p1e1c62jsn1c0711182248',
+      'X-RapidAPI-Key': '7c78eb2769msh093d9065f815be7p1715eajsn685e47bf8bb8',
       'X-RapidAPI-Host': 'real-time-finance-data.p.rapidapi.com'
     }
   };

@@ -13,7 +13,7 @@ function Daily_Plot(props) {
     const [Yaxis,setYAxis]=useState([]);
     const [f50axis,set50]=useState([]);
     const [f100axis,set100]=useState([]);
-    // const [f10axis,set10]=useState([]);
+    const [f10axis,set10]=useState([]);
     const [windowSize, setWindowSize] = useState(10);
     const[movingAverage,setMovingAverage]=useState([]);
     const [name,setName]=useState("");
@@ -30,7 +30,7 @@ function Daily_Plot(props) {
           language: 'en'
         },
         headers: {
-          'X-RapidAPI-Key': 'c31d153c5dmsha381f7a79f346a1p1e1c62jsn1c0711182248',
+          'X-RapidAPI-Key': '7c78eb2769msh093d9065f815be7p1715eajsn685e47bf8bb8',
           'X-RapidAPI-Host': 'real-time-finance-data.p.rapidapi.com'
         }
       };
@@ -59,6 +59,8 @@ function Daily_Plot(props) {
       }
       else if(val==100){
         set100(movingDays);
+      }else if(val==10){
+        set10(movingDays);
       }
           
     };
@@ -133,6 +135,13 @@ function Daily_Plot(props) {
               type: 'line',
               mode: 'lines',
               marker: {color: 'blue'},
+            },
+            {
+              x:Xaxis,
+              y:f10axis,
+              type: 'line',
+              mode: 'lines',
+              marker: {color: 'orange'},
             }
           ]}
           layout={{width: 850, height: 540, title:`Company name: ${name}` }}
@@ -148,9 +157,9 @@ function Daily_Plot(props) {
         </div>
         <div>
       <select value={windowSize} onChange={handleSelectChange}>
-        {/* <option value="10">10 Days</option> */}
-        <option value="50">50 Days</option>
-        <option value="100">100 Days</option>
+        <option value="10">Moving Average 10 days</option>
+        <option value="50">Moving Average 50 days</option>
+        <option value="100">Moving Average 100 days</option>
       </select>
       {/* <div>Moving Average for {windowSize} days: {movingAverage.join(', ')}</div> */}
     </div>

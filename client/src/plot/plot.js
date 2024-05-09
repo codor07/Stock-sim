@@ -41,7 +41,7 @@ const Plot = (props) => {
         onClick={()=>{daily_handler("year")}}>Year</Button>
       </ButtonGroup>
       {
-           ( daily==="daily")?<DailyPlot search={props.search}/>:(daily==="month")?<MonthlyPlot/>:(daily==="day")?<Year_Plot/>:<DailyPlot/>
+           ( daily==="daily")?<DailyPlot search={props.search}/>:(daily==="month")?<MonthlyPlot/>:(daily==="year")?<Year_Plot/>:<DailyPlot/>
           }
       </div>
           </div>

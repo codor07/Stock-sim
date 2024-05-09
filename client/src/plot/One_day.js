@@ -7,8 +7,8 @@ import Stock from '../pages/Detail'
 import CompanyNews from '../pages/home_news'
 function Daily_Plot(props) {
    const  {state} =useLocation();
-  //  console.log(state.item);
-  //  console.log(state.val);
+   console.log(state.item);
+   console.log(state.val);
     const [Xaxis,setXAxis]=useState([]);
     const [Yaxis,setYAxis]=useState([]);
     const [f50axis,set50]=useState([]);

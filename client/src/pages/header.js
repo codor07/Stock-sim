@@ -43,7 +43,7 @@ const Header = (props) => {
       };
       const handleHome = () => {
         setAnchorEl(null);
-        navigate('/',{state:{val:props.userInfo.state.val!=null?props.userInfo.state.val:""}});
+        navigate('/home',{state:{val:props.userInfo.state.val!=null?props.userInfo.state.val:""}});
       };
   return (
     <div className={classes.root}>

@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route,Navigate } from 'react-router-dom'
 import Login from './components/LoginRegister/Login';
 import Register from './components/LoginRegister/Register';
 import Home from './pages/Home';
@@ -9,8 +9,9 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route index path='/' element={<Home/>}></Route>
-        <Route path='/login' element={<Login />}></Route>
+        <Route index path='/'element={<Navigate to="/login" />}></Route>
+        <Route  path='/home' element={<Home />}></Route>
+        <Route  path='/login' element={<Login />}></Route>
         <Route path='/register' element={<Register />}></Route>
         <Route path='/plot' element={<Plot/>}></Route>
         <Route path='/profile' element={<Profile/>}></Route>

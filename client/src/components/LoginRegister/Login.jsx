@@ -46,7 +46,7 @@ const Login = () => {
             // setloginId({ userId: response.data.userInfo._id, userName: response.data.userInfo.name, userEmail: response.data.userInfo.email, quizIds: response.data.userInfo.attemptedQuizes })
             // console.log('here is data recieved',response)
             console.log(response.data.userInfo);
-            navigate('/',{state:{val:response.data.userInfo}});
+            navigate('/home',{state:{val:response.data.userInfo}});
             // window.alert("User Login successfully");
             // <Navigate to="/"  />
         } catch (error) {

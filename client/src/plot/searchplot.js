@@ -31,9 +31,9 @@ function SearchPlot(props) {
           language: 'en'
         },
         headers: {
-            'X-RapidAPI-Key': '7c78eb2769msh093d9065f815be7p1715eajsn685e47bf8bb8',
-            'X-RapidAPI-Host': 'real-time-finance-data.p.rapidapi.com'
-          }
+          'X-RapidAPI-Key': '9b8c7aedcbmsh6d6f47ae646a275p1c3bb1jsn368c27e109f6',
+          'X-RapidAPI-Host': 'real-time-finance-data.p.rapidapi.com'
+        }
       };
       const calculateMovingAverage = (data, windowSize) => {
         let movingAverages = [];

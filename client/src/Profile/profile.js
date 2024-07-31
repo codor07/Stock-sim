@@ -49,7 +49,9 @@ const PortfolioPage = () => {
         {profile!=null?profile.company_watchlist.length>0?profile.company_watchlist.map((item, index) => (
           // <li key={index}>{item}</li>
           <li key={index}>
-            <Watchlist item={item} />
+            {/* <Watchlist item={item} />
+             */}
+              <button > {item}</button>
           </li>
         )):"no watchlist added":"Some Error Occured"}
       </ul>

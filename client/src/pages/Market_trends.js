@@ -23,7 +23,7 @@ function Market_trends() {
           language: 'en'
         },
         headers: {
-          'X-RapidAPI-Key': '697c9f81cfmsha51928d583682a8p1a23aejsn3208779b6e6b',
+          'X-RapidAPI-Key': '9b8c7aedcbmsh6d6f47ae646a275p1c3bb1jsn368c27e109f6',
           'X-RapidAPI-Host': 'real-time-finance-data.p.rapidapi.com'
         }
       };
